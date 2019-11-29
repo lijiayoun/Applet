@@ -71,7 +71,6 @@
 			<tx:method name="*" />
 			<tx:method name="get*" read-only="true" /> <!-- 以get开始的所有方法 -->
 		</tx:attributes>
-		
 	</tx:advice>
 	
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
