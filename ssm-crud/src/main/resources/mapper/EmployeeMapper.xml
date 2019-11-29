@@ -116,7 +116,7 @@
 			order by ${orderByClause}
 		</if>
 	</select>
-	
+
 	<select id="selectByPrimaryKeyWithDept" resultMap="WithDeptResultMap">
 		select
 		<include refid="WithDept_Column_List" />

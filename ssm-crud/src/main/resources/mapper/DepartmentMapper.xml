@@ -23,10 +23,10 @@
 		<id column="dept_id" jdbcType="INTEGER" property="deptId" />
 		<result column="dept_name" jdbcType="VARCHAR"
 			property="deptName" />
-		<collection property="employee" column="dept_id"
+		<association property="employee" column="dept_id"
 			resultMap="employeeResultMap">
+		</association>
 
-		</collection>
 		
 	</resultMap>
 

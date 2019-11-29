@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,13 +16,13 @@
 <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
-	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	crossorigin="anonymous">
+	data-integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	data-crossorigin="anonymous">
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
-	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-	crossorigin="anonymous"></script>
+	data-integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	data-crossorigin="anonymous"></script>
 </head>
 <body>
 	<!-- 搭建页面 -->
@@ -49,24 +52,27 @@
 						<th>deptName</th>
 						<th>操作</th>
 					</tr>
-					<tr>
-						<th>1</th>
-						<th>张三</th>
-						<th>男</th>
-						<th>aaa@ssm.com</th>
-						<th>deptName</th>
-						<th>
-							<button class="btn btn-primary btn-sm">
-								<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-								编辑
-							</button>
-							<button class="btn btn-danger btn-sm">
-								<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-								删除
-							</button>
+					<c:forEach items="${pageInfo.list}" var="emp">
+						<tr>
+							<th>${emp.empId }</th>
+							<th>${emp.empName}</th>
+							<th>${emp.gender=="M"?"男":"女"}</th>
+							<th>${emp.email}</th>
+							<th>${emp.department.deptName}</th>
+							<th>
+								<button class="btn btn-primary btn-sm">
+									<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+									编辑
+								</button>
+								<button class="btn btn-danger btn-sm">
+									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+									删除
+								</button>
 
-						</th>
-					</tr>
+							</th>
+						</tr>
+					</c:forEach>
+
 				</table>
 			</div>
 		</div>
@@ -87,12 +93,13 @@
 						<li><a href="#">2</a></li>
 						<li><a href="#">3</a></li>
 						<li><a href="#">4</a></li>
-						
+
 						<li><a href="#">5</a></li>
 						<li><a href="#" aria-label="Next"> <span
 								aria-hidden="true">&raquo;</span>
 						</a></li>
 						<li><a href="#">末页</a></li>
+
 					</ul>
 				</nav>
 			</div>
