@@ -47,7 +47,7 @@ public class MvcTest {
 		//请求成功后，请求域中会有pageInfo，我们可以取出pageInfo进行验证
 		MockHttpServletRequest request=result.getRequest();
 		PageInfo pi =(PageInfo) request.getAttribute("pageInfo");
-		System.out.println("当前页码："+pi.getPageNum());
+		System.out.println("当前页码："+pi.getPageNum()); 
 		System.out.println("总页码："+pi.getPages());
 		System.out.println("总记录数："+pi.getTotal());
 		System.out.println("需要连续显示的页码：");
@@ -64,6 +64,7 @@ public class MvcTest {
 		
 		
 	}
+	
 }
 
 
