@@ -70,10 +70,13 @@
 		<tx:attributes>
 			<tx:method name="*" />
 			<tx:method name="get*" read-only="true" /> <!-- 以get开始的所有方法 -->
+			<tx:method name="get" propagation="REQUIRED" timeout="-1"  read-only="false" isolation="DEFAULT" rollback-for="ExceptionHandler"/>
 		</tx:attributes>
 	</tx:advice>
 	
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	<!-- Spring配置文件的核心点（数据源、与mybatis的整合，事务控制） -->	
+	
+
 	
 </beans>

@@ -98,7 +98,7 @@
 		e.emp_id, e.emp_name, e.gender, e.email, e.d_id,
 		d.dept_id, d.dept_name
 	</sql>
-	
+
 	<!-- 查询员工同时带部门 -->
 	<select id="selectByExampleWithDept"
 		resultMap="WithDeptResultMap">
@@ -116,7 +116,7 @@
 			order by ${orderByClause}
 		</if>
 	</select>
-
+	
 	<select id="selectByPrimaryKeyWithDept" resultMap="WithDeptResultMap">
 		select
 		<include refid="WithDept_Column_List" />
@@ -124,8 +124,10 @@
 		left join tbl_dept d on e.d_id=d.dept_id
 		where emp_id = #{empId,jdbcType=INTEGER}
 	</select>
-
+	
+	
 	<!-- 查询员工不带部门 -->
+	
 	<select id="selectByExample"
 		parameterType="com.ssm.crud.beans.EmployeeExample"
 		resultMap="BaseResultMap">
