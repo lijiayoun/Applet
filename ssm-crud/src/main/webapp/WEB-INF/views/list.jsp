@@ -86,6 +86,7 @@
 			<div class="col-md-6">
 				<nav aria-label="Page navigation">
 					<ul class="pagination">
+						<!-- 首页 -->
 						<li><a href="${APP_PATH }/ssm-crud/emps/?pn=1">首页</a></li>
 
 						<c:if test="${pageInfo.hasPreviousPage }">
@@ -97,14 +98,18 @@
 
 						</c:if>
 
+						<!--  -->
 						<c:forEach items="${ pageInfo.navigatepageNums}" var="page_Num">
+							<!-- 如果显示的是本页，则高亮显示 -->
 							<c:if test="${page_Num==pageInfo.pageNum}">
 								<li class="active"><a href="#">${page_Num}</a></li>
 							</c:if>
+							<!-- 如果显示的不是本页，则在这些按钮建立那一页的url -->
 							<c:if test="${page_Num!=pageInfo.pageNum }">
 								<li><a href="${APP_PATH }/ssm-crud/emps/?pn=${page_Num}">${page_Num}</a></li>
 							</c:if>
 						</c:forEach>
+						
 						<c:if
 							test="${pageInfo.hasNextPage}">
 							<li>
@@ -114,7 +119,8 @@
 							</li>
 						</c:if>
 						
-						<li><a href="${APP_PATH }/ssm-crud/emps/?pn=${pageInfo.pages}">末页页</a></li>
+						<!-- 末页 -->
+						<li><a href="${APP_PATH }/ssm-crud/emps/?pn=${pageInfo.pages}">末页</a></li>
 						
 						
 					</ul>
