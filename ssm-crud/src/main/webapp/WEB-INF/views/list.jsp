@@ -89,10 +89,11 @@
 						<li><a href="${APP_PATH }/ssm-crud/emps/?pn=1">首页</a></li>
 
 						<c:if test="${pageInfo.hasPreviousPage }">
-							<li><a
-								href="${APP_PATH }/ssm-crud/emps/?pn=${pageInfo.pageNum-1}"
-								aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-							</a></li>
+							<li>
+								<a href="${APP_PATH }/ssm-crud/emps/?pn=${pageInfo.pageNum-1}"aria-label="Previous"> 
+									<span aria-hidden="true">&laquo;</span>
+								</a>
+							</li>
 
 						</c:if>
 
@@ -106,11 +107,12 @@
 						</c:forEach>
 						<c:if
 							test="${pageInfo.hasNextPage}">
-							<li><a href="${APP_PATH }/ssm-crud/emps/?pn=${pageInfo.pageNum+1}" aria-label="Next"> <span
-									aria-hidden="true">&raquo;</span>
-							</a></li>
+							<li>
+								<a href="${APP_PATH }/ssm-crud/emps/?pn=${pageInfo.pageNum+1}" aria-label="Next"> 
+									<span aria-hidden="true">&raquo;</span>
+								</a>
+							</li>
 						</c:if>
-						
 						
 						<li><a href="${APP_PATH }/ssm-crud/emps/?pn=${pageInfo.pages}">末页页</a></li>
 						
