@@ -98,7 +98,6 @@
 
 						</c:if>
 
-						<!--  -->
 						<c:forEach items="${ pageInfo.navigatepageNums}" var="page_Num">
 							<!-- 如果显示的是本页，则高亮显示 -->
 							<c:if test="${page_Num==pageInfo.pageNum}">
