@@ -7,35 +7,53 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.ssm.crud.beans.Employee;
+import com.ssm.crud.beans.Msg;
 import com.ssm.crud.service.EmployeeService;
 
 @Controller
 public class EmployeeController {
-	
+
 	@Autowired
 	EmployeeService employeeService;
+
+	//æ­¤å¤„åº”å¼•å…¥jacksonåŒ…æ”¯æŒjsonæ•°æ®
+	@RequestMapping("/emps")
+	@ResponseBody  //@ResponseBodyå¯ä»¥è‡ªåŠ¨åœ°æŠŠè¿”å›çš„æ•°æ®è½¬åŒ–ä¸ºjsonå­—ç¬¦ä¸²
+	public Msg getEmpsWithJson(@RequestParam(value = "pn", defaultValue = "1") Integer pn, Model model) {
+		
+		PageHelper.startPage(pn, 5);
+
+		List<Employee> emps = employeeService.getAll();
+
+		PageInfo page = new PageInfo(emps, 5);
+		return Msg.success().add("pageInfo", page);
+	}
+
 	/*
-	 * ²éÑ¯Ô±¹¤Êı¾İ£¨·ÖÒ³²éÑ¯£©
+	  * æŸ¥è¯¢å‘˜å·¥æ•°æ®ï¼ˆåˆ†é¡µæŸ¥è¯¢ï¼‰
 	 * 
 	 */
-	@RequestMapping("/emps")
-	public String getEmps(@RequestParam(value = "pn",defaultValue = "1") Integer pn,Model model){
-		
-		//ÒıÈëPageHelper·ÖÒ³²éÑ¯
-		//ÔÚ²éÑ¯Ö®Ç°Ö»ĞèÒªµ÷ÓÃ:´«ÈëÒ³Âë+Ã¿Ò³µÄ´óĞ¡
+	// @RequestMapping("/emps")
+	public String getEmps(@RequestParam(value = "pn", defaultValue = "1") Integer pn, Model model) {
+
+
+		//å¼•å…¥PageHelperåˆ†é¡µæŸ¥è¯¢
+		//åœ¨æŸ¥è¯¢ä¹‹å‰åªéœ€è¦è°ƒç”¨:ä¼ å…¥é¡µç +æ¯é¡µçš„å¤§å°
 		PageHelper.startPage(pn, 5);
-		
-		//startPageºóÃæ½ô¸úµÄÕâ¸ö²éÑ¯¾ÍÊÇ·ÖÒ³²éÑ¯
-		List<Employee> emps=employeeService.getAll();
-		
-		//Ê¹ÓÃPageInfo°ü×°²éÑ¯ºóµÄ½á¹û£¬Ö»ĞèÒªPageInfo½»¸øÒ³Ãæ¾ÍĞĞÁË¡£
-		//·â×°ÁËÏêÏ¸µÄ·ÖÒ³ĞÅÏ¢£¬°üÀ¨ÓĞÎÒÃÇ²éÑ¯³öÀ´µÄÊı¾İ,´«ÈëÁ¬ĞøÏÔÊ¾µÄÒ³Êı
-		PageInfo page = new PageInfo(emps,5);
-		model.addAttribute("pageInfo",page);
+
+		//startPageåé¢ç´§è·Ÿçš„è¿™ä¸ªæŸ¥è¯¢å°±æ˜¯åˆ†é¡µæŸ¥è¯¢		
+		List<Employee> emps = employeeService.getAll();
+
+
+		//ä½¿ç”¨PageInfoåŒ…è£…æŸ¥è¯¢åçš„ç»“æœï¼Œåªéœ€è¦PageInfoäº¤ç»™é¡µé¢å°±è¡Œäº†ã€‚
+		//å°è£…äº†è¯¦ç»†çš„åˆ†é¡µä¿¡æ¯ï¼ŒåŒ…æ‹¬æœ‰æˆ‘ä»¬æŸ¥è¯¢å‡ºæ¥çš„æ•°æ®,ä¼ å…¥è¿ç»­æ˜¾ç¤ºçš„é¡µæ•°
+		PageInfo page = new PageInfo(emps, 5);
+		model.addAttribute("pageInfo", page);
 		
 		return "list";
 	}
